@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support N Programming Language</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0e21 0%, #1a1f3b 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        header {
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .image-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .placeholder-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(45deg, #1a237e, #311b92);
+            margin: 0 auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .placeholder-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.05)
+            );
+            transform: rotate(45deg);
+            animation: shine 5s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+        
+        .donation-section {
+            background: rgba(247, 147, 26, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(247, 147, 26, 0.3);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f7931a; /* Bitcoin orange */
+        }
+        
+        .bitcoin-address {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            word-break: break-all;
+            margin: 20px 0;
+            border: 1px solid rgba(247, 147, 26, 0.5);
+            color: #f7931a;
+        }
+        
+        .copy-btn {
+            background: #f7931a;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #ffaa45;
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            margin-top: 15px;
+            font-style: italic;
+            min-height: 24px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .bitcoin-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #f7931a;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            top: 5px;
+        }
+        
+        .bitcoin-icon::after {
+            content: "₿";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bitcoin-address {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>N Programming Language</h1>
+            <p class="subtitle">Official Website Under Construction</p >
+        </header>
+        
+        <div class="image-container">
+            <div class="placeholder-image">
+            </div>
+            <h2>Remember, we care what you said!</h2>
+            <h2>Email: contact@n-language.com</h2>
+            <h2>N programming language will release on 2025.10.1 ~ 2025.10.7<h3>(year/month/day)</h3></h2>
+        </div>
+        
+        <div class="donation-section">
+            <h2><span class="bitcoin-icon"></span>Support Our Project</h2>
+            <p>Your donations help us continue development on the N programming language</p >
+            
+            <div class="bitcoin-address" id="address">bc1qf4ur5sr9sf2rj2hqa85daxxyhy3tru9naqvnxm</div>
+            
+            <button class="copy-btn" id="copyButton">Copy Address</button>
+            <div class="status" id="copyStatus"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Thank you for your support! • N Programming Language • 2025</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const address = document.getElementById('address').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                document.getElementById('copyStatus').textContent = 'Address copied to clipboard!';
+            }).catch(err => {
+                document.getElementById('copyStatus').textContent = 'Failed to copy address.';
+            });
+        });
+    </script>
+</body>
+</html>
