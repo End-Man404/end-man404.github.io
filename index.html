@@ -1,228 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support N Programming Language</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>灵感主页 · 现代简约</title>
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0c0e21 0%, #1a1f3b 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #fbfdff;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 容器约束，优雅居中 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 头部样式 */
+        .header {
+            background-color: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 16px 0;
+        }
+
+        .header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #2563eb;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        .nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            padding: 8px 4px;
+            transition: color 0.2s, border-bottom 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        /* 按钮风格 */
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: white;
+            color: #1e293b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 8px 20px -6px rgba(37,99,235,0.5);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 16px 25px -8px rgba(37,99,235,0.6);
+        }
+
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            background: transparent;
+            color: #334155;
+        }
+
+        .btn-outline:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.1);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            padding: 80px 0 100px;
+            background: linear-gradient(145deg, #ffffff 0%, #f5f9ff 100%);
+            overflow: hidden;
+        }
+
+        .hero .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
             text-align: center;
+            max-width: 900px;
         }
-        
-        header {
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #1e293b, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #475569;
+            max-width: 700px;
             margin-bottom: 40px;
         }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
         }
-        
-        .subtitle {
+
+        /* 特性卡片区域 */
+        .features {
+            padding: 90px 0;
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 60px;
             font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 30px;
         }
-        
-        .image-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px 30px;
         }
-        
-        .placeholder-image {
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-            background: linear-gradient(45deg, #1a237e, #311b92);
-            margin: 0 auto;
-            border-radius: 10px;
+
+        .feature-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 45px -12px rgba(37,99,235,0.15);
+            border-color: #e0f2fe;
+        }
+
+        .icon-circle {
+            background: #e6f0ff;
+            width: 80px;
+            height: 80px;
+            border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
-            position: relative;
-            overflow: hidden;
+            margin: 0 auto 28px;
+            font-size: 2.4rem;
+            color: #2563eb;
+            transition: 0.25s;
         }
-        
-        .placeholder-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.05)
-            );
-            transform: rotate(45deg);
-            animation: shine 5s infinite linear;
+
+        .feature-card:hover .icon-circle {
+            background: #2563eb;
+            color: white;
         }
-        
-        @keyframes shine {
-            0% {
-                left: -50%;
-            }
-            100% {
-                left: 150%;
-            }
+
+        .feature-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
-        
-        .donation-section {
-            background: rgba(247, 147, 26, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            border: 1px solid rgba(247, 147, 26, 0.3);
+
+        .feature-card p {
+            color: #475569;
+            font-size: 1rem;
         }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #f7931a; /* Bitcoin orange */
+
+        /* 关于区域 (简约介绍) */
+        .about {
+            padding: 80px 0;
+            background: #f8fafc;
+            border-top: 1px solid #e9eef3;
+            border-bottom: 1px solid #e9eef3;
         }
-        
-        .bitcoin-address {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1.2rem;
-            word-break: break-all;
-            margin: 20px 0;
-            border: 1px solid rgba(247, 147, 26, 0.5);
-            color: #f7931a;
+
+        .about .container {
+            max-width: 900px;
+            text-align: center;
         }
-        
-        .copy-btn {
-            background: #f7931a;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
+
+        .about h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #0f172a;
         }
-        
-        .copy-btn:hover {
-            background: #ffaa45;
-            transform: translateY(-2px);
+
+        .about p {
+            font-size: 1.25rem;
+            color: #334155;
+            line-height: 1.7;
+            margin-bottom: 40px;
         }
-        
-        .status {
-            margin-top: 15px;
+
+        .about-signature {
             font-style: italic;
-            min-height: 24px;
+            color: #2563eb;
+            font-weight: 500;
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 30px;
+            width: 80%;
+            margin: 0 auto;
         }
-        
+
+        /* 页脚 */
         .footer {
-            margin-top: 40px;
-            opacity: 0.7;
-            font-size: 0.9rem;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 60px 0 30px;
         }
-        
-        .bitcoin-icon {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background: #f7931a;
-            border-radius: 50%;
-            margin-right: 10px;
-            position: relative;
-            top: 5px;
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
         }
-        
-        .bitcoin-icon::after {
-            content: "₿";
-            color: #000;
-            font-weight: bold;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a5f3fc, #bae6fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        @media (max-width: 768px) {
-            h1 {
+
+        .social-links {
+            display: flex;
+            gap: 32px;
+            font-size: 1.8rem;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.95rem;
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+            width: 100%;
+        }
+
+        .footer-copyright a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .footer-copyright a:hover {
+            color: #bae6fd;
+            text-decoration: underline;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 640px) {
+            .header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav ul {
+                justify-content: center;
+            }
+            .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .bitcoin-address {
-                font-size: 0.9rem;
+            .hero p {
+                font-size: 1.1rem;
             }
+            .btn {
+                padding: 10px 24px;
+            }
+            .features-grid {
+                gap: 24px;
+            }
+            .feature-card {
+                padding: 32px 20px;
+            }
+        }
+
+        /* 占位微交互 */
+        .fake-link {
+            cursor: default;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>N Programming Language</h1>
-            <p class="subtitle">Official Website Under Construction</p >
-        </header>
-        
-        <div class="image-container">
-            <div class="placeholder-image">
+    <!-- 固定头部 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> 光锥
             </div>
-            <h2>Remember, we care what you said!</h2>
-            <h2>Email: contact@n-language.com</h2>
-            <h2>N programming language will release on 2025.10.1 ~ 2025.10.7<h3>(year/month/day)</h3></h2>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="fake-link">首页</a></li>
+                    <li><a href="#" class="fake-link">特性</a></li>
+                    <li><a href="#" class="fake-link">关于</a></li>
+                    <li><a href="#" class="fake-link">联系</a></li>
+                </ul>
+            </nav>
         </div>
-        
-        <div class="donation-section">
-            <h2><span class="bitcoin-icon"></span>Support Our Project</h2>
-            <p>Your donations help us continue development on the N programming language</p >
-            
-            <div class="bitcoin-address" id="address">bc1qf4ur5sr9sf2rj2hqa85daxxyhy3tru9naqvnxm</div>
-            
-            <button class="copy-btn" id="copyButton">Copy Address</button>
-            <div class="status" id="copyStatus"></div>
-        </div>
-        
-        <div class="footer">
-            <p>Thank you for your support! • N Programming Language • 2025</p>
-        </div>
-    </div>
+    </header>
 
-    <script>
-        document.getElementById('copyButton').addEventListener('click', function() {
-            const address = document.getElementById('address').textContent;
-            navigator.clipboard.writeText(address).then(() => {
-                document.getElementById('copyStatus').textContent = 'Address copied to clipboard!';
-            }).catch(err => {
-                document.getElementById('copyStatus').textContent = 'Failed to copy address.';
-            });
-        });
-    </script>
+    <main>
+        <!-- 英雄区 (Hero) -->
+        <section class="hero">
+            <div class="container">
+                <h1>构建未来的数字体验</h1>
+                <p>简洁、快速、以人为本。我们帮你把想法变成优雅的线上存在，从零到一，每一步都清晰有力。</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary fake-link"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i>开始项目</a>
+                    <a href="#" class="btn btn-outline fake-link"><i class="fas fa-compass" style="margin-right: 8px;"></i>了解更多</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特性区域 三个卡片 -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">为什么选择我们</h2>
+                <div class="section-sub">每个细节都为了更优的体验，不止于设计。</div>
+                <div class="features-grid">
+                    <!-- 卡片 1 -->
+                    <div class="feature-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>极速性能</h3>
+                        <p>优化到最后一毫秒，无论是加载还是交互，流畅是唯一的标准。</p>
+                    </div>
+                    <!-- 卡片 2 -->
+                    <div class="feature-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>用心打造</h3>
+                        <p>每一个像素都经过斟酌，界面友好，让用户感到舒适与被尊重。</p>
+                    </div>
+                    <!-- 卡片 3 -->
+                    <div class="feature-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>全平台覆盖</h3>
+                        <p>从手机到桌面，从浏览器到小程序，无缝连接你的每一位访客。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于/故事段落 -->
+        <section class="about">
+            <div class="container">
+                <h2>不止于代码 · 关于我们</h2>
+                <p>
+                    我们是一群热爱技术与设计的理想主义者。相信简洁的界面背后，是深思熟虑的逻辑。
+                    多年来帮助各类初创团队与个人打造了令人惊喜的数字门面。我们不追求浮夸的特效，
+                    而是专注于让每个访问者都能感受到真诚与高效。
+                </p>
+                <div class="about-signature">
+                    <i class="fas fa-quote-left" style="opacity: 0.5; margin-right: 6px;"></i> 
+                    用设计连接人，用技术实现可能。
+                    <i class="fas fa-quote-right" style="opacity: 0.5; margin-left: 6px;"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-bolt"></i> 光锥
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter" class="fake-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="GitHub" class="fake-link"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="fake-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram" class="fake-link"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    <p>© 2026 光锥工作室 · 灵感与实用并存。  <a href="#" class="fake-link">隐私条款</a> · <a href="#" class="fake-link">使用指南</a></p>
+                    <p style="margin-top: 10px; font-size: 0.85rem;">🌱 这是一个静态主页示例，所有链接仅作演示。</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
